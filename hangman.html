@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> Hangman </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+  <link rel="stylesheet" href="css/ride.css">
+  <link rel="stylesheet" href="css/message.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container-fluid" align="center">
+    <div class="row">
+      <button id="request" class="btn btn-success">Save</button>
+      <button id="signOut" class="btn btn-danger">Sign out</button>
+    </div>
+    <div class="row">
+      <div class="panel-body">
+        <ol id="updates">
+          <li>Welcome to Hangman.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <h1>Hangman Game</h1>
+      <h3>Score</h3>
+      <h3 id="score"></h3>
+      <h3>Lives</h3>
+      <h3 id="chances"></h3>
+      <h3>Word</h3>
+      <h3 id="word"></h3>
+      <h3>Letters guessed</h3>
+      <h3 id="guessedLetters"></h3>
+    </div>
+    <div class="row">
+      <button type="button" id="A" class="btn btn-primary" onclick="guess('A')">A</button>
+      <button type="button" id="B" class="btn btn-primary" onclick="guess('B')">B</button>
+      <button type="button" id="C" class="btn btn-primary" onclick="guess('C')">C</button>
+      <button type="button" id="D" class="btn btn-primary" onclick="guess('D')">D</button>
+      <button type="button" id="E" class="btn btn-primary" onclick="guess('E')">E</button>
+      <button type="button" id="F" class="btn btn-primary" onclick="guess('F')">F</button>
+      <button type="button" id="G" class="btn btn-primary" onclick="guess('G')">G</button>
+      <button type="button" id="H" class="btn btn-primary" onclick="guess('H')">H</button>
+      <button type="button" id="I" class="btn btn-primary" onclick="guess('I')">I</button>
+      <button type="button" id="J" class="btn btn-primary" onclick="guess('J')">J</button>
+      <button type="button" id="K" class="btn btn-primary" onclick="guess('K')">K</button>
+      <button type="button" id="L" class="btn btn-primary" onclick="guess('L')">L</button>
+      <button type="button" id="M" class="btn btn-primary" onclick="guess('M')">M</button>
+      <button type="button" id="N" class="btn btn-primary" onclick="guess('N')">N</button>
+      <button type="button" id="O" class="btn btn-primary" onclick="guess('O')">O</button>
+      <button type="button" id="P" class="btn btn-primary" onclick="guess('P')">P</button>
+      <button type="button" id="Q" class="btn btn-primary" onclick="guess('Q')">Q</button>
+      <button type="button" id="R" class="btn btn-primary" onclick="guess('R')">R</button>
+      <button type="button" id="S" class="btn btn-primary" onclick="guess('S')">S</button>
+      <button type="button" id="T" class="btn btn-primary" onclick="guess('T')">T</button>
+      <button type="button" id="U" class="btn btn-primary" onclick="guess('U')">U</button>
+      <button type="button" id="V" class="btn btn-primary" onclick="guess('V')">V</button>
+      <button type="button" id="W" class="btn btn-primary" onclick="guess('W')">W</button>
+      <button type="button" id="X" class="btn btn-primary" onclick="guess('X')">X</button>
+      <button type="button" id="Y" class="btn btn-primary" onclick="guess('Y')">Y</button>
+      <button type="button" id="Z" class="btn btn-primary" onclick="guess('Z')">Z</button>
+    </div>
+    <div class="row">
+      <button type="button" id="restart" class="btn btn-danger" onclick="gameInit()">Restart</button>
+    </div>
+    <div class="row">
+      <h3>Definition</h3>
+      <h3 id="definition"></h3>
+      <h3 id="message"></h3>
+    </div>
+  </div>
+
+  <div id="leaderboard">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">High Score</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="authTokenModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="authToken">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Your Auth Token</h4>
+        </div>
+        <div class="modal-body">
+          <textarea class="authToken"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/vendor/jquery-3.1.0.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+  <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+  <script src="https://js.arcgis.com/4.3/"></script>
+  <script src="js/config.js"></script>
+  <script src="js/cognito-auth.js"></script>
+  <script src="js/ride.js"></script>
+  <script src="controller.js"></script>
+  <script src="model.js"></script>
+  <script src="view.js"></script>
+  <script>
+    gameInit();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+#word {
+    letter-spacing: 10px;
+}
+
+#restart {
+    margin-top: 10px;
+}
+
+h3 {
+    color: blue;
+    line-height: 20px;
+}
+
+#message {
+    color: green;
+}
+
+#leaderboard {
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 20px; 
+    margin: 5%;
+}
+
+#card {
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 20px; 
+    margin: 15%;
+    background-color: lightblue;
+}
